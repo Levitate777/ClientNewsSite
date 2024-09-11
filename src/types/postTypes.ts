@@ -1,7 +1,7 @@
 import { ITag } from "./tagTypes";
 import { IUser } from "./userTypes";
 
-interface IPost {
+export interface IPost {
   id: number,
   header: string,
   description: string,
@@ -17,23 +17,23 @@ export interface IPostState {
   error: null | string,
 }
 
-interface IFetchPosts {
-  type: PostActionType.FETCH_POSTS,
+interface IFetchPostsAction {
+  type: PostActionTypes.FETCH_POSTS,
 }
 
-interface IFetchPostsSuccess {
-  type: PostActionType.FETCH_POSTS_SUCCESS,
+interface IFetchPostsSuccessAction {
+  type: PostActionTypes.FETCH_POSTS_SUCCESS,
   payload: IPost[],
 }
 
-interface IFetchPostsError {
-  type: PostActionType.FETCH_POSTS_ERROR,
-  payload: string,
+interface IFetchPostsErrorAction {
+  type: PostActionTypes.FETCH_POSTS_ERROR,
+  payload: null | string,
 }
 
-export type PostAction = IFetchPosts | IFetchPostsSuccess | IFetchPostsError;
+export type PostAction = IFetchPostsAction | IFetchPostsSuccessAction | IFetchPostsErrorAction;
 
-export enum PostActionType {
+export enum PostActionTypes {
   FETCH_POSTS = 'FETCH_POSTS',
   FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS',
   FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',

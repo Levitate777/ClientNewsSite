@@ -1,4 +1,6 @@
-import { PostActionType, IPostState, PostAction } from "../../types/postTypes"
+import { AxiosError } from "axios"
+
+import { PostActionTypes, IPostState, PostAction, IPost } from "../../types/postTypes"
 
 const initialState: IPostState = {
   posts: [],
@@ -8,13 +10,17 @@ const initialState: IPostState = {
 
 export const postReducer = (state = initialState, action: PostAction): IPostState => {
   switch (action.type) {
-    case PostActionType.FETCH_POSTS: 
+    case PostActionTypes.FETCH_POSTS: 
       return {loading: true, error: null, posts: []}
-    case PostActionType.FETCH_POSTS_SUCCESS: 
+    case PostActionTypes.FETCH_POSTS_SUCCESS: 
       return {loading: false, error: null, posts: action.payload}
-    case PostActionType.FETCH_POSTS_ERROR: 
+    case PostActionTypes.FETCH_POSTS_ERROR: 
       return {loading: false, error: action.payload, posts: []}
     default:
       return state
   }
 }
+
+export const fetchPosts = (): PostAction => ({type: PostActionTypes.FETCH_POSTS});
+export const fetchPostsSuccess = (posts: IPost[]): PostAction => ({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: posts});
+export const fetchPostsError = (error: AxiosError): PostAction => ({type: PostActionTypes.FETCH_POSTS_ERROR, payload: error.message});

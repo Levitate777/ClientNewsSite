@@ -1,0 +1,52 @@
+.post-item-card {
+  max-width: 400px;
+  min-width: 265px;
+  margin: 10px auto;
+}
+
+.post-item-info {
+  margin-bottom: 10px;
+}
+
+.post-item-avatar {
+  width: 45px;
+  height: 45px;
+}
+
+.post-item-tags {
+  margin-bottom: 10px;
+}
+
+.post-item-image {
+  width: 100%;
+}
+
+.post-item-text h2 {
+  word-break: break-all;
+  margin: 10px 0 10px;
+  font-size: 24px;
+}
+
+.post-item-text span {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.my-masonry-grid {
+  display: flex;
+  width: auto;
+  gap: 10px;
+  padding: 0 10px 0;
+}
+.my-masonry-grid_column {
+  background-clip: padding-box;
+}
+
+@media (max-width: 768px) {
+  .post-item-card {
+    max-width: 100%;
+  }
+}

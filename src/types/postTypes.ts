@@ -7,13 +7,13 @@ export interface IPost {
   description: string,
   image: string,
   createdAt: string,
-  user: Pick<IUser, 'login'>
-  tag: ITag[],
+  user: Pick<IUser, 'login' | 'avatar'>
+  tags: ITag[],
 }
 
 export interface IPostState {
   posts: IPost[],
-  loading: boolean,
+  isLoading: boolean,
   error: null | string,
 }
 

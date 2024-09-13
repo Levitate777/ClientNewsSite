@@ -1,51 +1,55 @@
-.post-modal {
-  width: calc(100vw - 80px) !important;
+.modal {
+  width: calc(100vw - 80px);
   min-width: 265px;
   margin-top: 25px;
   margin-bottom: 25px;
 }
 
-.post-modal__info {
+.ant-modal {
+  width: calc(100vw - 80px);
+}
+
+.modal__info {
   margin-bottom: 10px;
 }
 
-.post-modal__avatar {
+.info__avatar {
   width: 60px;
   height: 60px;
 }
 
-.post-modal__user-login {
+.info__login {
   font-size: 22px;
 }
 
-.post-modal__post-date {
+.info__date {
   font-size: 16px;
 }
 
-.post-modal__tags {
+.modal__tags {
   margin-bottom: 10px;
 }
 
-.post-modal__tags * {
+.modal__tags * {
   font-size: 14px;
 }
 
-.post-modal__image {
+.modal__image {
   display: flex;
   justify-content: center;
 }
 
-.post-modal__image-item {
+.image__item {
   width: 100%;
 }
 
-.post-modal__text h2 {
+.modal__text h2 {
   word-break: break-all;
   margin: 10px 0 10px;
   font-size: 28px;
 }
 
-.post-modal__text span {
+.modal__text span {
   font-size: 18px;
 }
   

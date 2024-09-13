@@ -1,5 +1,5 @@
-import { ITag } from "./tagTypes";
-import { IUser } from "./userTypes";
+import { ITag } from './tagTypes';
+import { IUser } from './userTypes';
 
 export interface IPost {
   id: number,

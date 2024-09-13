@@ -1,0 +1,10 @@
+.masonry__grid {
+  display: flex;
+  width: auto;
+  gap: 10px;
+  padding: 0 10px 0;
+}
+
+.masonry__grid__column {
+  background-clip: padding-box;
+}

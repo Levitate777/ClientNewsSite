@@ -1,6 +1,8 @@
-import { AxiosError } from "axios"
-
-import { PostActionTypes, IPostState, PostAction, IPost } from "../../types/postTypes"
+import { 
+  PostActionTypes, 
+  IPostState, 
+  PostAction, 
+} from '../../types/postTypes'
 
 const initialState: IPostState = {
   posts: [],
@@ -32,7 +34,3 @@ export const postReducer = (state = initialState, action: PostAction): IPostStat
       return state
   }
 }
-
-export const fetchPosts = (): PostAction => ({type: PostActionTypes.FETCH_POSTS});
-export const fetchPostsSuccess = (posts: IPost[]): PostAction => ({type: PostActionTypes.FETCH_POSTS_SUCCESS, payload: posts});
-export const fetchPostsError = (error: AxiosError): PostAction => ({type: PostActionTypes.FETCH_POSTS_ERROR, payload: error.message});

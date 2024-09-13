@@ -1,13 +1,13 @@
-import { Layout } from "antd"
+import { Layout } from 'antd'
 
-import PostList from "./components/postComponents/PostList"
-import NewsHeader from "./components/Header/NewsHeader";
+import PostList from './components/postComponents/PostList'
+import NewsHeader from './components/Header';
 
 function App() {
 
   return (
     <Layout>
-      <NewsHeader></NewsHeader>
+      <NewsHeader/>
       <PostList/>
     </Layout>
   )

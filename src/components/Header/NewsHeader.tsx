@@ -1,12 +1,12 @@
-import { Button } from "antd";
-import { Header } from "antd/es/layout/layout";
+import { Button } from 'antd';
+import { Header } from 'antd/es/layout/layout';
 
-import './style.css'
+import styles from './NewsHeader.module.css' 
 
 const NewsHeader = () => {
   return (
-    <Header className='header'>
-      <div className='logo'>NewsSite</div>
+    <Header className={styles.header}>
+      <div className={styles.logo}>NewsSite</div>
       <Button ghost>Login</Button>
     </Header>
   );

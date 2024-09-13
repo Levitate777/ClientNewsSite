@@ -1,5 +1,5 @@
 export const formatDate = (isoString: string) => {
-  const date = new Date(isoString);
+  const date = isoString.length ? new Date(isoString) : new Date('2011-02-03T09:12:12.000Z');
 
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',

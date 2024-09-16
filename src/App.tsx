@@ -1,15 +1,11 @@
-import { Layout } from 'antd';
-
-import PostList from './components/postComponents/PostList';
-import NewsHeader from './components/Header';
+import MainPage from './pages/mainPage';
 
 function App() {
 
   return (
-    <Layout>
-      <NewsHeader/>
-      <PostList/>
-    </Layout>
+    <>
+      <MainPage/>
+    </>
   );
 };
 

@@ -54,7 +54,9 @@ const PostCard = ({
         </div>
       </Flex>
       <Flex className={styles.card__tags} wrap gap={'small'}>
-        {tags.map(tag => <Tag key={tag.id}>{tag.name}</Tag>)}
+        {tags.map(tag => 
+          <Tag key={tag.id}>{tag.name}</Tag>
+        )}
       </Flex>
       <Image
         className={styles.card__image}

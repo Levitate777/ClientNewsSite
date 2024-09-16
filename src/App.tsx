@@ -1,6 +1,6 @@
-import { Layout } from 'antd'
+import { Layout } from 'antd';
 
-import PostList from './components/postComponents/PostList'
+import PostList from './components/postComponents/PostList';
 import NewsHeader from './components/Header';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <NewsHeader/>
       <PostList/>
     </Layout>
-  )
-}
+  );
+};
 
-export default App
+export default App;

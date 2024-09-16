@@ -18,8 +18,8 @@ function* fetchPosts() {
       yield put(fetchPostsError(new AxiosError(UNKNOWN_ERROR)));
     }
   }
-}
+};
 
 export function* postWatcher() {
   yield takeEvery(PostActionTypes.FETCH_POSTS, fetchPosts);
-}
+};

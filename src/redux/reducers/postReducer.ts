@@ -2,13 +2,13 @@ import {
   PostActionTypes, 
   IPostState, 
   PostAction, 
-} from '../../types/postTypes'
+} from '../../types/postTypes';
 
 const initialState: IPostState = {
   posts: [],
   isLoading: false,
   error: null,
-}
+};
 
 export const postReducer = (state = initialState, action: PostAction): IPostState => {
   switch (action.type) {
@@ -33,4 +33,4 @@ export const postReducer = (state = initialState, action: PostAction): IPostStat
     default:
       return state
   }
-}
+};

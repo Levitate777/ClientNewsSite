@@ -4,4 +4,4 @@ import { postWatcher } from './postSaga';
 
 export function* rootSaga() {
     yield all([postWatcher()])
-}
+};

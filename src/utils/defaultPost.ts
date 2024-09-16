@@ -11,4 +11,4 @@ export const defaultPost: IPost = {
     avatar: null,
   },
   tags: [],
-}
+};

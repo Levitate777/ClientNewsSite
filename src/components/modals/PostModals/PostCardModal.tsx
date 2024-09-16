@@ -13,7 +13,7 @@ import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
 import { defaultPost } from '../../../utils/defaultPost';
 
 import defaultImage from '../../../images/Waaaaaaagh.webp';
-import styles from './PostCardModal.module.css' 
+import styles from './PostCardModal.module.css'; 
 
 interface IPostItemProps {
   postId: number,
@@ -33,44 +33,44 @@ const PostCardModal = ({postId, modalOpen, closeModal}: IPostItemProps) => {
   const createdData = formatDate(post.createdAt);
 
   return (
-    <>
-      <Modal 
-        className={styles.modal}
-        centered
-        open={modalOpen}
-        onCancel={closeModal}
-        footer={null}
-      >
-        <Flex className={styles.modal__info} gap={'small'}>
-          <Avatar 
-            className={styles.info__avatar} 
-            shape='square' 
-            size='large' 
-            icon={post.user.avatar 
-              ? post.user.avatar 
-              : <UserOutlined/>
-            } 
-          />
-          <div>
-            <div className={styles.info__login}>{post.user.login}</div>
-            <div className={styles.info__date}>{createdData}</div>
-          </div>
-        </Flex>
-        <Flex className={styles.modal__tags} wrap gap={'small'}>
-          {post.tags.map(tag => <Tag key={tag.id}>{tag.name}</Tag>)}
-        </Flex>
-        <div className={styles.modal__image}>
-          <Image
-            className={styles.image__item}
-            src={defaultImage}
-          />
+    <Modal 
+      className={styles.card}
+      centered
+      open={modalOpen}
+      onCancel={closeModal}
+      footer={null}
+    >
+      <Flex className={styles.card__info} gap={'small'}>
+        <Avatar 
+          className={styles.info__avatar} 
+          shape='square' 
+          size='large' 
+          icon={post.user.avatar 
+            ? post.user.avatar 
+            : <UserOutlined/>
+          } 
+        />
+        <div>
+          <div className={styles.info__login}>{post.user.login}</div>
+          <div className={styles.info__date}>{createdData}</div>
         </div>
-        <div className={styles.modal__text}>
-          <h2>{post.header}</h2>
-          <span>{post.description}</span>
-        </div>
-      </Modal>
-    </>
+      </Flex>
+      <Flex className={styles.card__tags} wrap gap={'small'}>
+        {post.tags.map(tag => 
+          <Tag key={tag.id}>{tag.name}</Tag>
+        )}
+      </Flex>
+      <div className={styles.image__container}>
+        <Image
+          className={styles.card__image}
+          src={defaultImage}
+        />
+      </div>
+      <div className={styles.card__text}>
+        <h2>{post.header}</h2>
+        <span>{post.description}</span>
+      </div>
+    </Modal>
   );
 };
 

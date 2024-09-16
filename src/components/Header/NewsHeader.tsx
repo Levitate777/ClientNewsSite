@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 
-import styles from './NewsHeader.module.css' 
+import styles from './NewsHeader.module.css' ;
 
 const NewsHeader = () => {
   return (

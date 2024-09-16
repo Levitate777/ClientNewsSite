@@ -1,16 +1,12 @@
-.modal {
-  width: calc(100vw - 80px);
-  min-width: 265px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+@import url('../../postComponents/PostCard/PostCard.module.css');
+
+.card {
+  max-width: calc(100vw - 80px);
+  margin: 25px 0 25px;
 }
 
 .ant-modal {
   width: calc(100vw - 80px);
-}
-
-.modal__info {
-  margin-bottom: 10px;
 }
 
 .info__avatar {
@@ -26,30 +22,23 @@
   font-size: 16px;
 }
 
-.modal__tags {
-  margin-bottom: 10px;
-}
-
-.modal__tags * {
+.card__tags * {
   font-size: 14px;
 }
 
-.modal__image {
+.image__container {
   display: flex;
   justify-content: center;
 }
 
-.image__item {
-  width: 100%;
-}
-
-.modal__text h2 {
+.card__text h2 {
   word-break: break-all;
   margin: 10px 0 10px;
   font-size: 28px;
 }
 
-.modal__text span {
+.card__text span {
+  display: inline;
   font-size: 18px;
 }
   

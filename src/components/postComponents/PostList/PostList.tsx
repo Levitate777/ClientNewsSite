@@ -11,8 +11,8 @@ import { IPost } from '../../../types/postTypes';
 import PostCard from '../PostCard';
 import PostCardModal from '../../modals/PostModals';
 import ErrorModal from '../../modals/ErrorModals/ErrorModal';
-import styles from './PostList.module.css' 
 
+import styles from './PostList.module.css'; 
 
 const breakpointColumnsObj = {
   default: 4,

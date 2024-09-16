@@ -9,9 +9,7 @@ const ErrorModal = ({ error }: IErrorModalProps) => {
     Modal.error({
       title: 'Error',
       content: (
-        <>
-          <div>{error}</div>
-        </>
+        <div>{error}</div>
       ),
     });
   };

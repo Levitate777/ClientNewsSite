@@ -1,6 +1,6 @@
 import MainPage from './pages/mainPage';
 
-function App() {
+const App = () => {
 
   return (
     <>

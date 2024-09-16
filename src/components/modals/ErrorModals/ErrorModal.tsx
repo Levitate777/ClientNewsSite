@@ -1,20 +1,24 @@
 import { Modal } from 'antd';
 
-const ErrorModal = ({ error }: { error: string | null }) => {
-  const strError = error ? error : '';
+interface IErrorModalProps {
+  error: string
+}
 
-  const config = {
-    title: 'EEERROOOOOOORRR',
-    content: (
-      <>
-        <div>{strError}</div>
-      </>
-    ),
+const ErrorModal = ({ error }: IErrorModalProps) => {
+  const showErrorModal = () => {
+    Modal.error({
+      title: 'Error',
+      content: (
+        <>
+          <div>{error}</div>
+        </>
+      ),
+    });
   };
 
   return (
     <>
-      {Modal.error(config)}
+      {showErrorModal()}
     </>
   );
 };

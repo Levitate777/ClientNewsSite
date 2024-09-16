@@ -4,9 +4,9 @@ import Masonry from 'react-masonry-css';
 import { FloatButton, Spin } from 'antd';
 import { useDispatch } from 'react-redux';
 
-import { useTypeSelector } from '../../../store/hooks/useTypeSelector';
-import { MyDispatch } from '../../../store/store';
-import { fetchPosts } from '../../../store/actions/postActions';
+import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
+import { MyDispatch } from '../../../redux/store';
+import { fetchPosts } from '../../../redux/actionCreators/post';
 import { IPost } from '../../../types/postTypes';
 import PostCard from '../PostCard';
 import PostCardModal from '../../modals/PostModals';
@@ -50,13 +50,13 @@ const PostList = () => {
           {posts.map((post: IPost) => 
             <div key={post.id}>
               <PostCard  
-              postUserLogin={post.user.login} 
-              postUserAvatar={post.user.avatar}
-              postDate={post.createdAt}
-              postTags={post.tags}
-              postImage={post.image}
-              postHeader={post.header}
-              postDescription={post.description}
+              login={post.user.login} 
+              avatar={post.user.avatar}
+              createdDate={post.createdAt}
+              tags={post.tags}
+              image={post.image}
+              header={post.header}
+              description={post.description}
               openModal={() => handleToggleModal(post.id, true)}
             />
             </div>

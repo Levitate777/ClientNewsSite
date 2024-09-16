@@ -3,7 +3,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 
 import { IPost, PostActionTypes } from '../../types/postTypes';
 import { getAllPosts } from '../api/postApi';
-import { fetchPostsSuccess, fetchPostsError } from '../actions/postActions';
+import { fetchPostsSuccess, fetchPostsError } from '../actionCreators/post';
 import { UNKNOWN_ERROR } from '../../constants';
 
 function* fetchPosts() {

@@ -9,8 +9,9 @@ import {
 
 import { IPost } from '../../../types/postTypes';
 import { formatDate } from '../../../utils/formatDate';
-import { useTypeSelector } from '../../../store/hooks/useTypeSelector';
+import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
 import { defaultPost } from '../../../utils/defaultPost';
+
 import defaultImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCardModal.module.css' 
 

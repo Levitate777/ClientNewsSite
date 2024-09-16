@@ -9,31 +9,32 @@ import {
 
 import { formatDate } from '../../../utils/formatDate';
 import { ITag } from '../../../types/tagTypes';
-import defaulImage from '../../../images/Waaaaaaagh.webp';
-import styles from './PostCard.module.css' 
 
-interface IPostItemProps {
-  postUserLogin: string, 
-  postUserAvatar: string | null, 
-  postDate: string, 
-  postTags: ITag[], 
-  postImage: string | null, 
-  postHeader: string, 
-  postDescription: string, 
+import defaulImage from '../../../images/Waaaaaaagh.webp';
+import styles from './PostCard.module.css';
+
+interface IPostCardProps {
+  login: string, 
+  avatar: string | null, 
+  createdDate: string, 
+  tags: ITag[], 
+  image: string | null, 
+  header: string, 
+  description: string, 
   openModal: () => void,
 }
 
 const PostCard = ({
-  postUserLogin, 
-  postUserAvatar, 
-  postDate, 
-  postTags, 
-  postImage, 
-  postHeader, 
-  postDescription, 
-  openModal}: IPostItemProps) => {
+  login, 
+  avatar, 
+  createdDate, 
+  tags, 
+  image, 
+  header, 
+  description, 
+  openModal}: IPostCardProps) => {
 
-  const createdData = formatDate(postDate);
+  const formatCreatedDate = formatDate(createdDate);
 
   return (
     <Card className={styles.card} hoverable={true}>
@@ -42,27 +43,27 @@ const PostCard = ({
           className={styles.info__avatar} 
           shape='square' 
           size='large' 
-          icon={postUserAvatar 
-            ? postUserAvatar 
+          icon={avatar 
+            ? avatar 
             : <UserOutlined />
           } 
         />
         <div>
-          <div>{postUserLogin}</div>
-          <div>{createdData}</div>
+          <div>{login}</div>
+          <div>{formatCreatedDate}</div>
         </div>
       </Flex>
       <Flex className={styles.card__tags} wrap gap={'small'}>
-        {postTags.map(tag => <Tag key={tag.id}>{tag.name}</Tag>)}
+        {tags.map(tag => <Tag key={tag.id}>{tag.name}</Tag>)}
       </Flex>
       <Image
         className={styles.card__image}
-        src={postImage ? postImage : defaulImage}
+        src={image ? image : defaulImage}
         preview={false}
       />
       <div className={styles.card__text}>
-        <h2>{postHeader}</h2>
-        <span onClick={openModal}>{postDescription}</span>
+        <h2>{header}</h2>
+        <span onClick={openModal}>{description}</span>
       </div>
     </Card>
   );

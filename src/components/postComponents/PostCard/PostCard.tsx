@@ -7,19 +7,33 @@ import {
   Image, 
 } from 'antd';
 
-import { IPost } from '../../../types/postTypes';
 import { formatDate } from '../../../utils/formatDate';
+import { ITag } from '../../../types/tagTypes';
 import defaulImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCard.module.css' 
 
 interface IPostItemProps {
-  post: IPost,
+  postUserLogin: string, 
+  postUserAvatar: string | null, 
+  postDate: string, 
+  postTags: ITag[], 
+  postImage: string | null, 
+  postHeader: string, 
+  postDescription: string, 
   openModal: () => void,
 }
 
-const PostCard = ({post, openModal}: IPostItemProps) => {
+const PostCard = ({
+  postUserLogin, 
+  postUserAvatar, 
+  postDate, 
+  postTags, 
+  postImage, 
+  postHeader, 
+  postDescription, 
+  openModal}: IPostItemProps) => {
 
-  const createdData = formatDate(post.createdAt);
+  const createdData = formatDate(postDate);
 
   return (
     <Card className={styles.card} hoverable={true}>
@@ -28,27 +42,27 @@ const PostCard = ({post, openModal}: IPostItemProps) => {
           className={styles.info__avatar} 
           shape='square' 
           size='large' 
-          icon={post.user.avatar 
-            ? post.user.avatar 
+          icon={postUserAvatar 
+            ? postUserAvatar 
             : <UserOutlined />
           } 
         />
         <div>
-          <div>{post.user.login}</div>
+          <div>{postUserLogin}</div>
           <div>{createdData}</div>
         </div>
       </Flex>
       <Flex className={styles.card__tags} wrap gap={'small'}>
-        {post.tags.map(tag => <Tag key={tag.id}>{tag.name}</Tag>)}
+        {postTags.map(tag => <Tag key={tag.id}>{tag.name}</Tag>)}
       </Flex>
       <Image
         className={styles.card__image}
-        src={defaulImage}
+        src={postImage ? postImage : defaulImage}
         preview={false}
       />
       <div className={styles.card__text}>
-        <h2>{post.header}</h2>
-        <span onClick={openModal}>{post.description}</span>
+        <h2>{postHeader}</h2>
+        <span onClick={openModal}>{postDescription}</span>
       </div>
     </Card>
   );

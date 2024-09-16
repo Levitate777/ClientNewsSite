@@ -21,8 +21,8 @@ export const postReducer = (state = initialState, action: PostAction): IPostStat
     case PostActionTypes.FETCH_POSTS_SUCCESS: 
       return {
         isLoading: false, 
-        error: null, posts: 
-        action.payload,
+        error: null, 
+        posts: action.payload,
       }
     case PostActionTypes.FETCH_POSTS_ERROR: 
       return {

@@ -5,12 +5,13 @@ import { FloatButton, Spin } from 'antd';
 import { useDispatch } from 'react-redux';
 
 import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
-import { MyDispatch } from '../../../redux/store';
+import { AppDispatch } from '../../../redux/store';
 import { fetchPosts } from '../../../redux/actionCreators/post';
 import { IPost } from '../../../types/postTypes';
+import { defaultPost } from '../../../utils/defaultPost';
 import PostCard from '../PostCard';
-import PostCardModal from '../../modals/PostModals';
-import ErrorModal from '../../modals/ErrorModals/ErrorModal';
+import PostCardModal from '../../modals/PostCardModal';
+import ErrorModal from '../../modals/ErrorModal/ErrorModal';
 
 import styles from './PostList.module.css'; 
 
@@ -22,21 +23,21 @@ const breakpointColumnsObj = {
 };
 
 const PostList = () => {
-  const [selectedPost, setSelectedPost] = useState<number>(1);
+  const [selectedPost, setSelectedPost] = useState<IPost>(defaultPost);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const posts: IPost[] = useTypeSelector(state => state.post.posts);
   const isLoading: boolean = useTypeSelector(state => state.post.isLoading);
   const error: string | null = useTypeSelector(state => state.post.error);
   
-  const dispatch: MyDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts())
   }, []);
 
-  const handleToggleModal = (postId: number = 1, isModalOpen: boolean = false) => {
-    setSelectedPost(postId);
+  const handleToggleModal = (post: IPost = defaultPost, isModalOpen: boolean = false) => {
+    setSelectedPost(post);
     setModalOpen(isModalOpen);
   };
   
@@ -50,15 +51,15 @@ const PostList = () => {
           {posts.map((post: IPost) => 
             <div key={post.id}>
               <PostCard  
-              login={post.user.login} 
-              avatar={post.user.avatar}
-              createdDate={post.createdAt}
-              tags={post.tags}
-              image={post.image}
-              header={post.header}
-              description={post.description}
-              openModal={() => handleToggleModal(post.id, true)}
-            />
+                login={post.user.login} 
+                avatar={post.user.avatar}
+                createdDate={post.createdAt}
+                tags={post.tags}
+                image={post.image}
+                header={post.header}
+                description={post.description}
+                openModal={() => handleToggleModal(post, true)}
+              />
             </div>
           )}
           {error ? (
@@ -66,11 +67,9 @@ const PostList = () => {
           ) : (
             <>
               <PostCardModal 
-                postId={selectedPost} 
+                post={selectedPost} 
                 modalOpen={modalOpen} 
-                closeModal={() => 
-                  handleToggleModal()
-                }
+                closeModal={() => setModalOpen(false)}
               />
               <FloatButton.BackTop />
             </>

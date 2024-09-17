@@ -1,5 +1,6 @@
 import { ITag } from './tagTypes';
 import { IUser } from './userTypes';
+import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR } from '../redux/actionCreators/actionsPostType'
 
 export interface IPost {
   id: number,
@@ -18,23 +19,17 @@ export interface IPostState {
 }
 
 interface IFetchPostsAction {
-  type: PostActionTypes.FETCH_POSTS,
+  type: typeof FETCH_POSTS,
 }
 
 interface IFetchPostsSuccessAction {
-  type: PostActionTypes.FETCH_POSTS_SUCCESS,
+  type: typeof FETCH_POSTS_SUCCESS,
   payload: IPost[],
 }
 
 interface IFetchPostsErrorAction {
-  type: PostActionTypes.FETCH_POSTS_ERROR,
+  type: typeof FETCH_POSTS_ERROR,
   payload: null | string,
 }
 
 export type PostAction = IFetchPostsAction | IFetchPostsSuccessAction | IFetchPostsErrorAction;
-
-export enum PostActionTypes {
-  FETCH_POSTS = 'FETCH_POSTS',
-  FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS',
-  FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
-};

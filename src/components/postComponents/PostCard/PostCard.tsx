@@ -1,7 +1,5 @@
-import { UserOutlined } from '@ant-design/icons';
 import { 
   Flex, 
-  Avatar, 
   Card, 
   Tag, 
   Image, 
@@ -9,9 +7,11 @@ import {
 
 import { formatDate } from '../../../utils/formatDate';
 import { ITag } from '../../../types/tagTypes';
+import CustomerAvatar from '../../Avatar/CustomerAvatar';
 
 import defaulImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCard.module.css';
+
 
 interface IPostCardProps {
   login: string, 
@@ -32,21 +32,18 @@ const PostCard = ({
   image, 
   header, 
   description, 
-  openModal}: IPostCardProps) => {
-
+  openModal,
+}: IPostCardProps) => {
   const formatCreatedDate = formatDate(createdDate);
 
   return (
     <Card className={styles.card} hoverable={true}>
       <Flex className={styles.card__info} gap={'small'}>
-        <Avatar 
+        <CustomerAvatar 
           className={styles.info__avatar} 
           shape='square' 
           size='large' 
-          icon={avatar 
-            ? avatar 
-            : <UserOutlined />
-          } 
+          url={avatar} 
         />
         <div>
           <div>{login}</div>

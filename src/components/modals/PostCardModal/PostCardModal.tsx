@@ -9,27 +9,17 @@ import {
 
 import { IPost } from '../../../types/postTypes';
 import { formatDate } from '../../../utils/formatDate';
-import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
-import { defaultPost } from '../../../utils/defaultPost';
 
 import defaultImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCardModal.module.css'; 
 
 interface IPostItemProps {
-  postId: number,
+  post: IPost,
   modalOpen: boolean,
   closeModal: () => void,
 }
 
-const PostCardModal = ({postId, modalOpen, closeModal}: IPostItemProps) => {
-  const posts: IPost[] = useTypeSelector(state => state.post.posts);
-  
-  const searchPost = (postId: number) => {
-    const post: IPost[] = posts.filter((post) => post.id === postId);
-    return post.length ? post[0] : defaultPost;
-  }
-
-  const post: IPost = searchPost(postId);
+const PostCardModal = ({post, modalOpen, closeModal}: IPostItemProps) => {
   const createdData = formatDate(post.createdAt);
 
   return (

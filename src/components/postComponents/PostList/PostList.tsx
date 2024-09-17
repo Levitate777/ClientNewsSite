@@ -36,9 +36,9 @@ const PostList = () => {
     dispatch(fetchPosts())
   }, []);
 
-  const handleToggleModal = (post: IPost = defaultPost, isModalOpen: boolean = false) => {
+  const handleToggleModal = (post: IPost) => {
     setSelectedPost(post);
-    setModalOpen(isModalOpen);
+    setModalOpen(!modalOpen)
   };
   
   return (
@@ -49,18 +49,17 @@ const PostList = () => {
           columnClassName={styles.masonry__grid__column}
         >
           {posts.map((post: IPost) => 
-            <div key={post.id}>
-              <PostCard  
-                login={post.user.login} 
-                avatar={post.user.avatar}
-                createdDate={post.createdAt}
-                tags={post.tags}
-                image={post.image}
-                header={post.header}
-                description={post.description}
-                openModal={() => handleToggleModal(post, true)}
-              />
-            </div>
+            <PostCard
+              key={post.id}  
+              login={post.user.login} 
+              avatar={post.user.avatar}
+              createdDate={post.createdAt}
+              tags={post.tags}
+              image={post.image}
+              header={post.header}
+              description={post.description}
+              openModal={() => handleToggleModal(post)}
+            />
           )}
           {error ? (
             <ErrorModal error={error}/>

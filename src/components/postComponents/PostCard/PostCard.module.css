@@ -1,0 +1,42 @@
+.card {
+  max-width: 400px;
+  min-width: 265px;
+  margin: 10px auto;
+}
+
+.card__info {
+  margin-bottom: 10px;
+}
+
+.info__avatar {
+  width: 45px;
+  height: 45px;
+}
+
+.card__tags {
+  margin-bottom: 10px;
+}
+
+.card__image {
+  width: 100%;
+}
+
+.card__text h2 {
+  word-break: break-all;
+  margin: 10px 0 10px;
+  font-size: 24px;
+}
+
+.card__text span {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+}

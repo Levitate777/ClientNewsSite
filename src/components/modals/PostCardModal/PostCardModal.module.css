@@ -1,0 +1,44 @@
+@import url('../../postComponents/PostCard/PostCard.module.css');
+
+.card {
+  max-width: calc(100vw - 80px);
+  margin: 25px 0 25px;
+}
+
+.ant-modal {
+  width: calc(100vw - 80px);
+}
+
+.info__avatar {
+  width: 60px;
+  height: 60px;
+}
+
+.info__login {
+  font-size: 22px;
+}
+
+.info__date {
+  font-size: 16px;
+}
+
+.card__tags * {
+  font-size: 14px;
+}
+
+.image__container {
+  display: flex;
+  justify-content: center;
+}
+
+.card__text h2 {
+  word-break: break-all;
+  margin: 10px 0 10px;
+  font-size: 28px;
+}
+
+.card__text span {
+  display: inline;
+  font-size: 18px;
+}
+  

@@ -7,20 +7,35 @@ import {
   Image,
 } from 'antd';
 
-import { IPost } from '../../../types/postTypes';
+import { ITag } from '../../../types/tagTypes';
 import { formatDate } from '../../../utils/formatDate';
 
 import defaultImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCardModal.module.css'; 
 
-interface IPostItemProps {
-  post: IPost,
+interface IPostCardProps {
+  login: string, 
+  avatar: string | null, 
+  createdDate: string, 
+  tags: ITag[], 
+  image: string | null, 
+  header: string, 
+  description: string, 
   modalOpen: boolean,
   closeModal: () => void,
 }
 
-const PostCardModal = ({post, modalOpen, closeModal}: IPostItemProps) => {
-  const createdData = formatDate(post.createdAt);
+const PostCardModal = ({
+  login, 
+  avatar, 
+  createdDate, 
+  tags, 
+  image, 
+  header, 
+  description, 
+  modalOpen, closeModal
+}: IPostCardProps) => {
+  const createdData = formatDate(createdDate);
 
   return (
     <Modal 
@@ -35,30 +50,30 @@ const PostCardModal = ({post, modalOpen, closeModal}: IPostItemProps) => {
           className={styles.info__avatar} 
           shape='square' 
           size='large' 
-          icon={post.user.avatar 
-            ? post.user.avatar 
+          icon={avatar 
+            ? avatar 
             : <UserOutlined/>
           } 
         />
         <div>
-          <div className={styles.info__login}>{post.user.login}</div>
+          <div className={styles.info__login}>{login}</div>
           <div className={styles.info__date}>{createdData}</div>
         </div>
       </Flex>
       <Flex className={styles.card__tags} wrap gap={'small'}>
-        {post.tags.map(tag => 
+        {tags.map(tag => 
           <Tag key={tag.id}>{tag.name}</Tag>
         )}
       </Flex>
       <div className={styles.image__container}>
         <Image
           className={styles.card__image}
-          src={defaultImage}
+          src={image ? image : defaultImage}
         />
       </div>
       <div className={styles.card__text}>
-        <h2>{post.header}</h2>
-        <span>{post.description}</span>
+        <h2>{header}</h2>
+        <span>{description}</span>
       </div>
     </Modal>
   );

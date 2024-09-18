@@ -8,7 +8,7 @@ import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
 import { AppDispatch } from '../../../redux/store';
 import { fetchPosts } from '../../../redux/actionCreators/post';
 import { IPost } from '../../../types/postTypes';
-import { defaultPost } from '../../../utils/defaultPost';
+import { defaultPost } from '../../../constants';
 import PostCard from '../PostCard';
 import PostCardModal from '../../modals/PostCardModal';
 import ErrorModal from '../../modals/ErrorModal/ErrorModal';
@@ -66,7 +66,13 @@ const PostList = () => {
           ) : (
             <>
               <PostCardModal 
-                post={selectedPost} 
+                login={selectedPost.user.login} 
+                avatar={selectedPost.user.avatar}
+                createdDate={selectedPost.createdAt}
+                tags={selectedPost.tags}
+                image={selectedPost.image}
+                header={selectedPost.header}
+                description={selectedPost.description} 
                 modalOpen={modalOpen} 
                 closeModal={() => setModalOpen(false)}
               />

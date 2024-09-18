@@ -7,9 +7,9 @@ import {
 
 import { formatDate } from '../../../utils/formatDate';
 import { ITag } from '../../../types/tagTypes';
-import CustomerAvatar from '../../Avatar/CustomerAvatar';
+import CustomerAvatar from '../../CustomerAvatar/CustomerAvatar';
 
-import defaulImage from '../../../images/Waaaaaaagh.webp';
+import defaultImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCard.module.css';
 
 
@@ -57,7 +57,7 @@ const PostCard = ({
       </Flex>
       <Image
         className={styles.card__image}
-        src={image ? image : defaulImage}
+        src={image ? image : defaultImage}
         preview={false}
       />
       <div className={styles.card__text}>

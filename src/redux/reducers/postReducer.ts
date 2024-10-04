@@ -1,8 +1,5 @@
 import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR } from '../actionCreators/actionsPostType';
-import { 
-  IPostState, 
-  PostAction, 
-} from '../../types/postTypes';
+import { IPostState, PostAction } from '../../types/postTypes';
 
 const initialState: IPostState = {
   posts: [],

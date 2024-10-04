@@ -2,7 +2,7 @@ import { FETCH_AUTH, FETCH_AUTH_SUCCESS, FETCH_AUTH_ERROR } from "../redux/actio
 import { IUser, IUserData } from "./userTypes";
 
 export interface IResponseAuth {
-	user: IUserData,
+	user: IUser,
 	accessToken: string,
 }
 
@@ -12,18 +12,19 @@ export interface IAuthState {
 	error: null | string,
 }
 
-interface IFetchPostsAction {
+interface IFetchAuthAction {
 	type: typeof FETCH_AUTH,
+	payload: IUserData,
 }
 
-interface IFetchPostsSuccessAction {
+interface IFetchAuthSuccessAction {
 	type: typeof FETCH_AUTH_SUCCESS,
 	payload: IUser,
 }
 
-interface IFetchPostsErrorAction {
+interface IFetchAuthErrorAction {
 	type: typeof FETCH_AUTH_ERROR,
 	payload: null | string,
 }
 
-export type AuthAction = IFetchPostsAction | IFetchPostsSuccessAction | IFetchPostsErrorAction;
+export type AuthAction = IFetchAuthAction | IFetchAuthSuccessAction | IFetchAuthErrorAction;

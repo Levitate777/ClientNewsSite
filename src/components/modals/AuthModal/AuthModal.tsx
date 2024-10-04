@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux';
+
+import { AppDispatch } from '../../../redux/store';
+import { fetchAuth } from '../../../redux/actionCreators/auth';
 import type { FormProps } from 'antd';
 import { Modal, Button, Form, Input } from 'antd'
 
@@ -22,13 +26,27 @@ const AuthModal = ({
   confirmLoading,
   changeConfirmLoading,
 }: IAuthModal) => {
+  const [form] = Form.useForm();
 
-  const handleOk = () => {
-    changeConfirmLoading(true);
-    setTimeout(() => {
-      closeModal();
-      changeConfirmLoading(false);
-    }, 2000);
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleCancel = () => {
+    closeModal();
+    form.resetFields();
+  };
+
+  const handleOk = async () => {
+    try {
+      const values = await form.validateFields();
+      changeConfirmLoading(true);
+      dispatch(fetchAuth(values));
+      setTimeout(() => {
+        closeModal();
+        changeConfirmLoading(false);
+      }, 2000);
+    } catch (error) {
+      console.log('Failed to submit data');   
+    }
   };
 
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
@@ -46,9 +64,10 @@ const AuthModal = ({
         open={modalOpen}
         onOk={handleOk}
         confirmLoading={confirmLoading}
-        onCancel={closeModal}
+        onCancel={handleCancel}
       >
         <Form
+          form={form}
           name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
@@ -81,12 +100,6 @@ const AuthModal = ({
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
             <Input.Password />
-          </Form.Item>
-
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
           </Form.Item>
         </Form>
       </Modal>

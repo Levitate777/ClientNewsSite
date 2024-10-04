@@ -11,6 +11,7 @@ import { UNKNOWN_ERROR } from '../../constants';
 function* authSaga( action: { payload: IUserData } ) {
   try {
     const response: AxiosResponse<IResponseAuth> = yield call(registration, action.payload);
+    console.log('response.data: ', response.data);
     yield put(fetchAuthSuccess(response.data.user));
     localStorage.setItem('token', response.data.accessToken)
   } catch (error) {   

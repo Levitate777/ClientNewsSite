@@ -33,7 +33,8 @@ const PostCardModal = ({
   image, 
   header, 
   description, 
-  modalOpen, closeModal
+  modalOpen, 
+  closeModal,
 }: IPostCardProps) => {
   const createdData = formatDate(createdDate);
 

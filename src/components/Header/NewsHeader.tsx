@@ -1,19 +1,23 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 
+import { AppDispatch } from '../../redux/store';
 import { useTypeSelector } from '../../redux/hooks/useTypeSelector';
+import { logoutUser } from '../../redux/actionCreators/auth';
 import { IUser } from '../../types/userTypes';
 import AuthModal from '../modals/AuthModal';
-import CustomerAvatar from '../CustomerAvatar/CustomerAvatar';
+import CustomerAvatar from '../CustomerAvatar';
 
-import styles from './NewsHeader.module.css' ;
+import styles from './NewsHeader.module.css';
 
 const NewsHeader = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [typeModal, setTypeModal] = useState('login');
-
+  
+  const dispatch: AppDispatch = useDispatch();
   const currentUser: IUser | null = useTypeSelector((state) => state.auth.currentUser);
 
   const handleToggleModal = (type: string) => {
@@ -23,7 +27,7 @@ const NewsHeader = () => {
 
   const removeToken = () => {
     localStorage.removeItem('token');
-    console.log(localStorage);
+    dispatch(logoutUser());
   };
 
   return (

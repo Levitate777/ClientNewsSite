@@ -1,11 +1,16 @@
-import { AuthAction, IAuthState } from "../../types/authTypes"
-import { FETCH_AUTH, FETCH_AUTH_SUCCESS, FETCH_AUTH_ERROR, LOGOUT_USER } from "../actionCreators/actionsAuthType"
+import {
+  FETCH_AUTH,
+  FETCH_AUTH_SUCCESS,
+  FETCH_AUTH_ERROR,
+  LOGOUT_USER 
+} from "../actionCreators/actionsAuthType";
+import { AuthAction, IAuthState } from "../../types/authTypes";
 
 const initialState: IAuthState = {
   currentUser: null,
   isLoading: false,
   error: null,
-}
+};
 
 export const authReducer = (state = initialState, action: AuthAction): IAuthState => {
   switch(action.type) {

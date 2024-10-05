@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import type { FormProps } from 'antd';
 import { Modal, Form, Input } from 'antd'
@@ -56,10 +57,12 @@ const AuthModal = ({
     console.log('Failed:', errorInfo);
   };
 
-  if (!isLoading && confirmLoading) {
-    handleCancel();
-    changeConfirmLoading(false);
-  }
+  useEffect(() => {
+    if (!isLoading && confirmLoading) {
+      handleCancel();
+      changeConfirmLoading(false);
+    }
+  }, [isLoading, confirmLoading]);
 
   return (
     <>

@@ -7,7 +7,7 @@ import {
 
 import { formatDate } from '../../../utils/formatDate';
 import { ITag } from '../../../types/tagTypes';
-import CustomerAvatar from '../../CustomerAvatar/CustomerAvatar';
+import CustomerAvatar from '../../CustomerAvatar';
 
 import defaultImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCard.module.css';

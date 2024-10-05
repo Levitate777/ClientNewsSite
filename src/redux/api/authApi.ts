@@ -4,6 +4,6 @@ import { IUserData } from '../../types/userTypes';
 import { IResponseAuth } from '../../types/authTypes';
 import { api } from '.';
 
-export const registration = (user: IUserData): Promise<AxiosResponse> => {
-  return api.post<IResponseAuth>('user', { ...user})
+export const requestAuth = (user: IUserData, route: string): Promise<AxiosResponse> => {
+  return api.post<IResponseAuth>(`auth/${route}`, { ...user});
 };

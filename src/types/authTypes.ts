@@ -1,4 +1,4 @@
-import { FETCH_AUTH, FETCH_AUTH_SUCCESS, FETCH_AUTH_ERROR } from "../redux/actionCreators/actionsAuthType";
+import { FETCH_AUTH, FETCH_AUTH_SUCCESS, FETCH_AUTH_ERROR, LOGOUT_USER } from "../redux/actionCreators/actionsAuthType";
 import { IUser, IUserData } from "./userTypes";
 
 export interface IResponseAuth {
@@ -12,9 +12,14 @@ export interface IAuthState {
 	error: null | string,
 }
 
+export interface IAuthActionPayload {
+  user: IUserData,
+  route: string,
+}
+
 interface IFetchAuthAction {
 	type: typeof FETCH_AUTH,
-	payload: IUserData,
+	payload: IAuthActionPayload,
 }
 
 interface IFetchAuthSuccessAction {
@@ -27,4 +32,8 @@ interface IFetchAuthErrorAction {
 	payload: null | string,
 }
 
-export type AuthAction = IFetchAuthAction | IFetchAuthSuccessAction | IFetchAuthErrorAction;
+interface ILogoutUser {
+	type: typeof LOGOUT_USER,
+}
+
+export type AuthAction = IFetchAuthAction | IFetchAuthSuccessAction | IFetchAuthErrorAction | ILogoutUser;

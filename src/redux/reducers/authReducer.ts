@@ -1,5 +1,5 @@
 import { AuthAction, IAuthState } from "../../types/authTypes"
-import { FETCH_AUTH, FETCH_AUTH_SUCCESS, FETCH_AUTH_ERROR } from "../actionCreators/actionsAuthType"
+import { FETCH_AUTH, FETCH_AUTH_SUCCESS, FETCH_AUTH_ERROR, LOGOUT_USER } from "../actionCreators/actionsAuthType"
 
 const initialState: IAuthState = {
   currentUser: null,
@@ -25,6 +25,12 @@ export const authReducer = (state = initialState, action: AuthAction): IAuthStat
       return {
         isLoading: false, 
         error: action.payload, 
+        currentUser: null,
+      }
+    case LOGOUT_USER:
+      return {
+        isLoading: true, 
+        error: null, 
         currentUser: null,
       }
     default:

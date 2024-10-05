@@ -1,10 +1,18 @@
 .header {
-    display: flex;
-    align-items: center;
-    gap: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
 }
 
-.logo {
-    font-size: 32px;
-    color: white;
+.logo, .user__login {
+	font-size: 32px;
+	color: white;
+}
+
+.auth, .user{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
 }

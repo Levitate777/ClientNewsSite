@@ -6,7 +6,7 @@ export interface IUser {
 }
 
 export interface IUserData {
-  login: string,
+  login?: string,
   password: string,
-  email?: string,
+  email: string,
 }

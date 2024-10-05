@@ -1,15 +1,12 @@
-import { Layout } from 'antd';
-
-import MainPage from './pages/MainPage';
-import NewsHeader from './components/Header';
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './components/AppRouter';
 
 const App = () => {
 
   return (
-    <Layout>
-      <NewsHeader/>
-      <MainPage/>
-    </Layout>
+    <BrowserRouter>
+      <AppRouter/>
+    </BrowserRouter>
   );
 };
 

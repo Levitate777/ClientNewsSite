@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Masonry from 'react-masonry-css';
-import { FloatButton, Spin } from 'antd';
+import { FloatButton, Pagination, PaginationProps, Spin } from 'antd';
 import { useDispatch } from 'react-redux';
 
 import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
@@ -9,9 +9,11 @@ import { AppDispatch } from '../../../redux/store';
 import { fetchPosts } from '../../../redux/actionCreators/post';
 import { IPost } from '../../../types/postTypes';
 import { defaultPost } from '../../../constants';
+import { pageSizeOptions } from '../../../utils/pageSizeOptions';
 import PostCard from '../PostCard';
 import PostCardModal from '../../modals/PostCardModal';
 import ErrorModal from '../../modals/ErrorModal/ErrorModal';
+import usePagination from '../../../hooks/usePagination';
 
 import styles from './PostList.module.css'; 
 
@@ -25,6 +27,7 @@ const breakpointColumnsObj = {
 const PostList = () => {
   const [selectedPost, setSelectedPost] = useState<IPost>(defaultPost);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [countPostsOnPage, setCountPostsOnPage] = useState<number>(import.meta.env.VITE_APP_COUNT_POSTS_ON_PAGE);
 
   const posts: IPost[] = useTypeSelector(state => state.post.posts);
   const isLoading: boolean = useTypeSelector(state => state.post.isLoading);
@@ -32,6 +35,8 @@ const PostList = () => {
   
   const dispatch: AppDispatch = useDispatch();
 
+  const [postsOnPage, setCurrentPage] = usePagination(posts, countPostsOnPage);
+  
   useEffect(() => {
     dispatch(fetchPosts())
   }, []);
@@ -40,6 +45,14 @@ const PostList = () => {
     setSelectedPost(post);
     setModalOpen(!modalOpen)
   };
+
+  const onShowSizeChange: PaginationProps['onShowSizeChange'] = (_, pageSize) => {
+    setCountPostsOnPage(pageSize);
+  };
+
+  const handleCurrentPage: PaginationProps['onChange'] = (page) => {
+    setCurrentPage(page);
+  }
   
   return (
     <Spin spinning={isLoading} tip="Loading" size="large">
@@ -48,7 +61,7 @@ const PostList = () => {
           className={styles.masonry__grid}
           columnClassName={styles.masonry__grid__column}
         >
-          {posts.map((post: IPost) => 
+          {postsOnPage.map((post: IPost) => 
             <PostCard
               key={post.id}  
               login={post.user.login} 
@@ -80,6 +93,16 @@ const PostList = () => {
             </>
           )}
       </Masonry>
+      <Pagination
+        showSizeChanger
+        onShowSizeChange={onShowSizeChange}
+        onChange={handleCurrentPage}
+        align='center'
+        defaultPageSize={import.meta.env.VITE_APP_COUNT_POSTS_ON_PAGE}
+        pageSizeOptions={pageSizeOptions()}
+        defaultCurrent={1}
+        total={posts.length}
+      />
     </Spin>
   );
 };

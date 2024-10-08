@@ -1,0 +1,14 @@
+.info__container {
+	margin: 20px;
+}
+
+.info__description {
+	max-width: 260px;
+}
+
+.info__button {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-around;
+}

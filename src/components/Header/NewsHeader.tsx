@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { Button } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 
@@ -11,6 +13,7 @@ import AuthModal from '../modals/AuthModal';
 import CustomerAvatar from '../CustomerAvatar';
 
 import styles from './NewsHeader.module.css';
+
 
 const NewsHeader = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,7 +42,10 @@ const NewsHeader = () => {
           <Button ghost onClick={() => handleToggleModal('registration')}>Register</Button>
         </div>
         ) : (
-          <div className={styles.user}>
+          <Link 
+            to={import.meta.env.VITE_APP_USERPAGE_ROUTE} 
+            className={styles.user}
+          >
             <span className={styles.user__login}>{currentUser.login}</span>
             <CustomerAvatar 
               className={styles.info__avatar} 
@@ -48,7 +54,7 @@ const NewsHeader = () => {
               url={null} 
             />
             <Button ghost onClick={removeToken}>LogOut</Button>
-          </div>
+          </Link>
         )
       }
       <AuthModal 

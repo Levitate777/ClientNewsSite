@@ -1,0 +1,13 @@
+.filter__container {
+  margin: 10px;
+	align-items: center;
+	justify-content: center;
+}
+
+.filter__select{
+  width: 90px;
+}
+
+.filter__input {
+	width: 400px;
+}

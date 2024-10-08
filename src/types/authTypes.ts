@@ -1,13 +1,16 @@
 import { FETCH_AUTH, FETCH_AUTH_SUCCESS, FETCH_AUTH_ERROR, LOGOUT_USER } from "../redux/actionCreators/actionsAuthType";
+import { IPost } from "./postTypes";
 import { IUser, IUserData } from "./userTypes";
 
 export interface IResponseAuth {
 	user: IUser,
 	accessToken: string,
+	posts: IPost[],
 }
 
 export interface IAuthState {
 	currentUser: IUser | null,
+	posts: IPost[],
 	isLoading: boolean,
 	error: null | string,
 }
@@ -24,7 +27,10 @@ interface IFetchAuthAction {
 
 interface IFetchAuthSuccessAction {
 	type: typeof FETCH_AUTH_SUCCESS,
-	payload: IUser,
+	payload: {
+		user: IUser,
+		posts: IPost[],
+	}
 }
 
 interface IFetchAuthErrorAction {

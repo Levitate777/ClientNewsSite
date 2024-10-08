@@ -8,6 +8,7 @@ import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
 import { AppDispatch } from '../../../redux/store';
 import { fetchPosts } from '../../../redux/actionCreators/post';
 import { IPost } from '../../../types/postTypes';
+import { IUser } from '../../../types/userTypes';
 import { defaultPost } from '../../../constants';
 import PostCard from '../PostCard';
 import PostCardModal from '../../modals/PostCardModal';
@@ -22,7 +23,11 @@ const breakpointColumnsObj = {
   600: 1,
 };
 
-const PostList = () => {
+interface IPostList {
+  user: IUser,
+}
+
+const PostList = ({ user }: IPostList) => {
   const [selectedPost, setSelectedPost] = useState<IPost>(defaultPost);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -51,8 +56,8 @@ const PostList = () => {
           {posts.map((post: IPost) => 
             <PostCard
               key={post.id}  
-              login={post.user.login} 
-              avatar={post.user.avatar}
+              login={post.user?.login ?? user?.login} 
+              avatar={post.user?.avatar ?? user?.avatar ?? null}
               createdDate={post.createdAt}
               tags={post.tags}
               image={post.image}

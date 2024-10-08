@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { useTypeSelector } from '../../redux/hooks/useTypeSelector';
 import { IUser } from '../../types/userTypes';
@@ -10,9 +10,11 @@ const AppRouter = () => {
 
   return (
     <Routes>
-			{currentUser !== null &&
-				<Route element={<UserPage/>} path={import.meta.env.VITE_APP_USERPAGE_ROUTE}/>
-			}
+      {currentUser ? (
+        <Route element={<UserPage />} path={import.meta.env.VITE_APP_USERPAGE_ROUTE} />
+      ) : (
+        <Route path="*" element={<Navigate to={import.meta.env.VITE_APP_MAINPAGE_ROUTE} />} />
+      )}
 			<Route element={<MainPage/>} path={import.meta.env.VITE_APP_MAINPAGE_ROUTE}/>
     </Routes>
   );

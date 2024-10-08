@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from 'antd';
 import { Header } from 'antd/es/layout/layout';
@@ -14,11 +14,11 @@ import CustomerAvatar from '../CustomerAvatar';
 
 import styles from './NewsHeader.module.css';
 
-
 const NewsHeader = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [typeModal, setTypeModal] = useState('login');
+  const navigate = useNavigate();
   
   const dispatch: AppDispatch = useDispatch();
   const currentUser: IUser | null = useTypeSelector((state) => state.auth.currentUser);
@@ -31,6 +31,7 @@ const NewsHeader = () => {
   const removeToken = () => {
     localStorage.removeItem('token');
     dispatch(logoutUser());
+    navigate(import.meta.env.VITE_APP_MAINPAGE_ROUTE);
   };
 
   return (

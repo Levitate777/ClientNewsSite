@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Masonry from 'react-masonry-css';
 import { FloatButton, Spin } from 'antd';
-import { useDispatch } from 'react-redux';
 
-import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
-import { AppDispatch } from '../../../redux/store';
-import { fetchPosts } from '../../../redux/actionCreators/post';
 import { IPost } from '../../../types/postTypes';
-import { IUser } from '../../../types/userTypes';
 import { defaultPost } from '../../../constants';
 import PostCard from '../PostCard';
 import PostCardModal from '../../modals/PostCardModal';
 import ErrorModal from '../../modals/ErrorModal/ErrorModal';
 
 import styles from './PostList.module.css'; 
+import { IUser } from '../../../types/userTypes';
 
 const breakpointColumnsObj = {
   default: 4,
@@ -24,28 +20,21 @@ const breakpointColumnsObj = {
 };
 
 interface IPostList {
-  user: IUser,
+  posts: IPost[],
+  isLoading: boolean,
+  error: string | null,
+  user?: IUser | null,
 }
 
-const PostList = ({ user }: IPostList) => {
+const PostList = ({ posts, isLoading, error, user }: IPostList) => {
   const [selectedPost, setSelectedPost] = useState<IPost>(defaultPost);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-
-  const posts: IPost[] = useTypeSelector(state => state.post.posts);
-  const isLoading: boolean = useTypeSelector(state => state.post.isLoading);
-  const error: string | null = useTypeSelector(state => state.post.error);
-  
-  const dispatch: AppDispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchPosts())
-  }, []);
 
   const handleToggleModal = (post: IPost) => {
     setSelectedPost(post);
     setModalOpen(!modalOpen)
   };
-  
+
   return (
     <Spin spinning={isLoading} tip="Loading" size="large">
       <Masonry

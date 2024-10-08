@@ -8,11 +8,11 @@ import { AppDispatch } from '../redux/store';
 import { fetchPosts } from '../redux/actionCreators/post';
 import { pageSizeOptions } from '../utils/pageSizeOptions';
 import { IPost } from '../types/postTypes';
+import useFilter from '../hooks/useFilter';
 import usePagination from '../hooks/usePagination';
 import NewsHeader from '../components/Header';
 import PostList from '../components/postComponents/PostList';
 import FilterInputs from '../components/FilterInputs';
-import useFilter from '../hooks/useFilter';
 
 const MainPage = () => {
   const [countPostsOnPage, setCountPostsOnPage] = useState<number>(import.meta.env.VITE_APP_COUNT_POSTS_ON_PAGE);
@@ -32,7 +32,7 @@ const MainPage = () => {
 
   const handleCurrentPage: PaginationProps['onChange'] = (page) => {
     setCurrentPage(page);
-  }
+  };
   
   useEffect(() => {
     dispatch(fetchPosts())

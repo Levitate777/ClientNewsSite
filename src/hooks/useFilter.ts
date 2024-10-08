@@ -2,18 +2,17 @@ import { useMemo, useState } from "react";
 
 import { IPost } from "../types/postTypes";
 
-export type SortState = 'all' | 'text' | 'title' | 'tag' | 'author'
+export type SortState = 'all' | 'text' | 'title' | 'tag' | 'author';
 
 export interface IFilterState {
   query: string;
   sort: SortState; 
-}
+};
 
 const FindOnPost = (field: string, text: string) => {
-  console.log(field, text);
   if (field === undefined) return false;
   return field.toLowerCase().includes(text.toLowerCase());
-}
+};
 
 const useFilter = (posts: IPost[]) => {
   const [filter, setFilter] = useState<IFilterState>({query: '', sort: 'all'});
@@ -26,6 +25,7 @@ const useFilter = (posts: IPost[]) => {
       if(FindOnPost(post.user.login, filter.query)) return true;
       return false;
     });
+
     return resultFiltered;
   }
   , [filter, posts]);

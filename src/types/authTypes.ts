@@ -10,7 +10,6 @@ export interface IResponseAuth {
 
 export interface IAuthState {
 	currentUser: IUser | null,
-	posts: IPost[],
 	isLoading: boolean,
 	error: null | string,
 }
@@ -27,10 +26,7 @@ interface IFetchAuthAction {
 
 interface IFetchAuthSuccessAction {
 	type: typeof FETCH_AUTH_SUCCESS,
-	payload: {
-		user: IUser,
-		posts: IPost[],
-	}
+	payload: IUser,
 }
 
 interface IFetchAuthErrorAction {

@@ -11,7 +11,7 @@ function* authSaga( action: { payload: IAuthActionPayload } ) {
   try {
     const response: AxiosResponse<IResponseAuth> = yield call(requestAuth, action.payload.user, action.payload.route);
     console.log('response.data: ', response.data);
-    yield put(fetchAuthSuccess(response.data.user, response.data.posts));
+    yield put(fetchAuthSuccess(response.data.user));
     localStorage.setItem('token', response.data.accessToken)
   } catch (error) {   
     if (error instanceof AxiosError) {

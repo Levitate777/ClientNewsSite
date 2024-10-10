@@ -69,7 +69,7 @@ const PostCardModal = ({
       <div className={styles.image__container}>
         <Image
           className={styles.card__image}
-          src={image ? image : defaultImage}
+          src={image ? `${import.meta.env.VITE_APP_SERVER_URL}${image}` : defaultImage}
         />
       </div>
       <div className={styles.card__text}>

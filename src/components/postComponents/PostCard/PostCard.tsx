@@ -57,7 +57,7 @@ const PostCard = ({
       </Flex>
       <Image
         className={styles.card__image}
-        src={image ? image : defaultImage}
+        src={image ? `${import.meta.env.VITE_APP_SERVER_URL}${image}` : defaultImage}
         preview={false}
       />
       <div className={styles.card__text}>

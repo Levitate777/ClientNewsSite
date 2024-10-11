@@ -73,6 +73,7 @@ export type AuthAction = IFetchAuthAction | IFetchAuthSuccessAction | IFetchAuth
 
 interface IFetchUserUpdateAction {
 	type: typeof FETCH_USER_UPDATE,
+	payload: IUserDataUpdate,
 }
 
 interface IFetchUserUpdateSuccessAction {

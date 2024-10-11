@@ -4,7 +4,7 @@ import type { FormProps } from 'antd';
 import { Modal, Form, Input } from 'antd'
 
 import { AppDispatch } from '../../../redux/store';
-import { fetchAuth } from '../../../redux/actionCreators/auth';
+import { fetchAuth } from '../../../redux/actionCreators/user';
 import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
 
 interface IAuthModal {
@@ -31,7 +31,7 @@ const AuthModal = ({
   const [form] = Form.useForm();
 
   const dispatch: AppDispatch = useDispatch();
-  const isLoading: boolean = useTypeSelector((state) => state.auth.isLoading);
+  const isLoading: boolean = useTypeSelector((state) => state.user.isLoading);
 
   const handleCancel = () => {
     closeModal();

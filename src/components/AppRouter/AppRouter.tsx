@@ -6,7 +6,7 @@ import MainPage from '../../pages/MainPage';
 import UserPage from '../../pages/UserPage';
 
 const AppRouter = () => {
-  const currentUser: IUser | null = useTypeSelector((state) => state.auth.currentUser);
+  const currentUser: IUser | null = useTypeSelector((state) => state.user.currentUser);
 
   return (
     <Routes>

@@ -7,7 +7,7 @@ import { Header } from 'antd/es/layout/layout';
 
 import { AppDispatch } from '../../redux/store';
 import { useTypeSelector } from '../../redux/hooks/useTypeSelector';
-import { logoutUser } from '../../redux/actionCreators/auth';
+import { logoutUser } from '../../redux/actionCreators/user';
 import { IUser } from '../../types/userTypes';
 import AuthModal from '../modals/AuthModal';
 import CustomerAvatar from '../CustomerAvatar';
@@ -21,7 +21,7 @@ const NewsHeader = () => {
   const navigate = useNavigate();
   
   const dispatch: AppDispatch = useDispatch();
-  const currentUser: IUser | null = useTypeSelector((state) => state.auth.currentUser);
+  const currentUser: IUser | null = useTypeSelector((state) => state.user.currentUser);
 
   const handleToggleModal = (type: string) => {
     setTypeModal(type);

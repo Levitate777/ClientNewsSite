@@ -7,17 +7,17 @@ import CustomerAvatar from '../CustomerAvatar';
 import styles from './UserInfo.module.css'; 
 
 interface IUserInfo {
-	id: number,
 	login: string,
 	email: string,
 	avatar: string | null,
+	countPosts: number,
 };
 
 const UserInfo = ({
-	id,
 	login,
 	email,
 	avatar,
+	countPosts,
 }: IUserInfo) => {
   const container = useRef<HTMLDivElement | null>(null);
   const [containerHeight, setContainerHeight] = useState<number>(145);
@@ -44,7 +44,7 @@ const UserInfo = ({
 			<Descriptions className={styles.info__description} column={1} title="User Info">
 				<Descriptions.Item label="Login">{login}</Descriptions.Item>
 				<Descriptions.Item label="Email">{email}</Descriptions.Item>
-				<Descriptions.Item label="Number of posts">{id}</Descriptions.Item>
+				<Descriptions.Item label="Number of posts">{countPosts}</Descriptions.Item>
 			</Descriptions>
 			<div className={styles.info__button}>
 				<Button type="primary" >Edit Profile</Button>

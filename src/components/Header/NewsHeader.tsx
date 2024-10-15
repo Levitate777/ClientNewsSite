@@ -14,16 +14,18 @@ import CustomerAvatar from '../CustomerAvatar';
 
 import styles from './NewsHeader.module.css';
 
+type typeModal = 'login' | 'registration';
+
 const NewsHeader = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [typeModal, setTypeModal] = useState('login');
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [confirmLoading, setConfirmLoading] = useState<boolean>(false);
+  const [typeModal, setTypeModal] = useState<typeModal>('login');
   const navigate = useNavigate();
   
   const dispatch: AppDispatch = useDispatch();
   const currentUser: IUser | null = useTypeSelector((state) => state.user.currentUser);
 
-  const handleToggleModal = (type: string) => {
+  const handleToggleModal = (type: typeModal) => {
     setTypeModal(type);
     setModalOpen(!modalOpen);
   };
@@ -44,7 +46,7 @@ const NewsHeader = () => {
         </div>
         ) : (
           <Link 
-            to={import.meta.env.VITE_APP_USERPAGE_ROUTE} 
+            to={`${import.meta.env.VITE_APP_USERPAGE_ROUTE}/${currentUser.id}`} 
             className={styles.user}
           >
             <span className={styles.user__login}>{currentUser.login}</span>

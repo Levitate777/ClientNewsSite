@@ -11,7 +11,7 @@ const AppRouter = () => {
   return (
     <Routes>
       {currentUser ? (
-        <Route element={<UserPage />} path={import.meta.env.VITE_APP_USERPAGE_ROUTE} />
+        <Route element={<UserPage />} path={`${import.meta.env.VITE_APP_USERPAGE_ROUTE}/:id`} />
       ) : (
         <Route path="*" element={<Navigate to={import.meta.env.VITE_APP_MAINPAGE_ROUTE} />} />
       )}

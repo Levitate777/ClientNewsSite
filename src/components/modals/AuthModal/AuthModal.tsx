@@ -8,7 +8,7 @@ import { fetchAuth } from '../../../redux/actionCreators/user';
 import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
 
 interface IAuthModal {
-  typeModal: string | 'login' | 'registration',
+  typeModal: 'login' | 'registration',
   modalOpen: boolean,
   closeModal: () => void,
   confirmLoading: boolean,

@@ -17,34 +17,35 @@ import FilterInputs from "../components/FilterInputs";
 const UserPage = () => {
 	const [countPostsOnPage, setCountPostsOnPage] = useState<number>(import.meta.env.VITE_APP_COUNT_POSTS_ON_PAGE);
 
-	const currentUser: IUser | null = useTypeSelector((state) => state.auth.currentUser);
-	const error: string | null = useTypeSelector(state => state.auth.error);
-	const posts: IPost[] = useTypeSelector((state) => state.auth.posts);
-	const isLoading: boolean = useTypeSelector((state) => state.auth.isLoading);
+	const currentUser: IUser | null = useTypeSelector((state) => state.user.currentUser);
+	const error: string | null = useTypeSelector(state => state.post.error);
+	const errorUpdate: string | null = useTypeSelector(state => state.user.errorUpdate);
+	const posts: IPost[] = useTypeSelector((state) => state.user.posts);
+	const isLoading: boolean = useTypeSelector((state) => state.user.isLoading);
 
-  const [filterPosts, filter, setFilter] = useFilter(posts);
-  const [postsOnPage, setCurrentPage] = usePagination(filterPosts, countPostsOnPage);
+	const [filterPosts, filter, setFilter] = useFilter(posts);
+	const [postsOnPage, setCurrentPage] = usePagination(filterPosts, countPostsOnPage);
 
-  const onShowSizeChange: PaginationProps['onShowSizeChange'] = (_, pageSize) => {
-    setCountPostsOnPage(pageSize);
-  };
+	const onShowSizeChange: PaginationProps['onShowSizeChange'] = (_, pageSize) => {
+		setCountPostsOnPage(pageSize);
+	};
 
-  const handleCurrentPage: PaginationProps['onChange'] = (page) => {
-    setCurrentPage(page);
-  };
+	const handleCurrentPage: PaginationProps['onChange'] = (page) => {
+		setCurrentPage(page);
+	};
 
-  return (
-    <Layout>
-      <NewsHeader/>
+	return (
+		<Layout>
+			<NewsHeader/>
 			{currentUser !== null ? (
 				<UserInfo
-					id={currentUser?.id}
 					login={currentUser?.login}
 					email={currentUser?.email}
 					avatar={currentUser?.avatar}
+					countPosts={posts.length}
 				/>
 			) : (
-				<ErrorModal error={'Что-то пошло не так'}/>
+				<ErrorModal error={error ?? errorUpdate ?? 'Что-то пошло не так'}/>
 			)}
 			<div>
 				<FilterInputs
@@ -56,7 +57,7 @@ const UserPage = () => {
 					isLoading={isLoading}
 					error={error}
 					user={currentUser}
-      	/>
+				/>
 				<Pagination
 					showSizeChanger
 					onShowSizeChange={onShowSizeChange}
@@ -66,10 +67,10 @@ const UserPage = () => {
 					pageSizeOptions={pageSizeOptions()}
 					defaultCurrent={1}
 					total={posts.length}
-      	/>
+				/>
 			</div>
-    </Layout>
-  );
+		</Layout>
+	);
 };
 
 export default UserPage;

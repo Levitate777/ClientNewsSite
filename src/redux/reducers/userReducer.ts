@@ -6,7 +6,6 @@ import {
   FETCH_USER_UPDATE,
 	FETCH_USER_UPDATE_SUCCESS,
 	FETCH_USER_UPDATE_ERROR,
-  FETCH_WHO_IS_THIS_SUCCESS,
 } from "../actionCreators/actionUserType";
 import { UserAction, IUserState } from "../../types/userTypes";
 
@@ -53,12 +52,6 @@ export const userReducer = (state = initialState, action: UserAction): IUserStat
         currentUser: null,
         posts: [],
       }
-    case FETCH_WHO_IS_THIS_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,  
-        currentUser: action.payload,
-      }
     case FETCH_USER_UPDATE: 
       return {
         ...state,
@@ -70,7 +63,8 @@ export const userReducer = (state = initialState, action: UserAction): IUserStat
         ...state,
         isLoading: false, 
         errorUpdate: null, 
-        currentUser: action.payload,
+        currentUser: action.payload.user,
+        posts: action.payload.posts,
       }
     case FETCH_USER_UPDATE_ERROR: 
       return {

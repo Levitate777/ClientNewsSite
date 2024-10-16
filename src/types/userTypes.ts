@@ -7,7 +7,6 @@ import {
 	FETCH_USER_UPDATE_SUCCESS,
 	FETCH_USER_UPDATE_ERROR, 
 	FETCH_WHO_IS_THIS,
-	FETCH_WHO_IS_THIS_SUCCESS,
 } from "../redux/actionCreators/actionUserType";
 import { IPost } from "./postTypes";
 
@@ -33,10 +32,15 @@ export interface IUserState {
 	errorUpdate: null | string,
 }
 
+export interface IUserStateData {
+	user: IUser,
+	posts: IPost[],
+}
+
 export interface IUserDataUpdate {
 	id: string,
-  login: string | undefined,
-  avatar: File | undefined,
+  login: string | null,
+  avatar: File | null,
 }
 
 export interface IResponseAuth {
@@ -57,10 +61,7 @@ interface IFetchAuthAction {
 
 interface IFetchAuthSuccessAction {
 	type: typeof FETCH_AUTH_SUCCESS,
-	payload: {
-		user: IUser,
-		posts: IPost[],
-	}
+	payload: IUserStateData,
 }
 
 interface IFetchAuthErrorAction {
@@ -76,18 +77,12 @@ interface IWhoIsThis {
 	type: typeof FETCH_WHO_IS_THIS,
 }
 
-interface IWhoIsThisSuccess {
-	type: typeof FETCH_WHO_IS_THIS_SUCCESS,
-	payload: IUser,
-}
-
 export type AuthAction = 
 IFetchAuthAction 
 | IFetchAuthSuccessAction 
 | IFetchAuthErrorAction 
 | ILogoutUser 
-| IWhoIsThis 
-| IWhoIsThisSuccess;
+| IWhoIsThis;
 
 interface IFetchUserUpdateAction {
 	type: typeof FETCH_USER_UPDATE,
@@ -96,7 +91,7 @@ interface IFetchUserUpdateAction {
 
 interface IFetchUserUpdateSuccessAction {
 	type: typeof FETCH_USER_UPDATE_SUCCESS,
-	payload: IUser,
+	payload: IUserStateData,
 }
 
 interface IFetchUserUpdateErrorAction {

@@ -14,7 +14,8 @@ const CustomerAvatar = ({ url, shape = 'circle', size = 'default', className }: 
       className={className}
       shape={shape}
       size={size}
-      icon={!url && <UserOutlined />}
+      src={`${import.meta.env.VITE_APP_SERVER_URL}${url}` || undefined}
+      icon={!url ? <UserOutlined /> : undefined}
     />
   );
 };

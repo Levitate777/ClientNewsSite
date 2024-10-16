@@ -54,7 +54,7 @@ const NewsHeader = () => {
               className={styles.info__avatar} 
               shape='square' 
               size='large' 
-              url={null} 
+              url={currentUser.avatar} 
             />
             <Button ghost onClick={removeToken}>LogOut</Button>
           </Link>

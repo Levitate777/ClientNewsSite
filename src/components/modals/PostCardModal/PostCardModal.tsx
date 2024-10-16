@@ -9,6 +9,7 @@ import {
 
 import { ITag } from '../../../types/tagTypes';
 import { formatDate } from '../../../utils/formatDate';
+import CustomerAvatar from '../../CustomerAvatar';
 
 import defaultImage from '../../../images/Waaaaaaagh.webp';
 import styles from './PostCardModal.module.css'; 
@@ -47,15 +48,12 @@ const PostCardModal = ({
       footer={null}
     >
       <Flex className={styles.card__info} gap={'small'}>
-        <Avatar 
+        <CustomerAvatar 
           className={styles.info__avatar} 
-          shape='square' 
-          size='large' 
-          icon={avatar 
-            ? avatar 
-            : <UserOutlined/>
-          } 
-        />
+					shape='square' 
+					size='large' 
+					url={avatar} 
+				/>
         <div>
           <div className={styles.info__login}>{login}</div>
           <div className={styles.info__date}>{createdData}</div>

@@ -7,8 +7,11 @@ import {
 	FETCH_USER_UPDATE_SUCCESS,
 	FETCH_USER_UPDATE_ERROR, 
 	FETCH_WHO_IS_THIS,
+  FETCH_ADD_POST,
+  FETCH_ADD_POST_SUCCESS,
+  FETCH_ADD_POST_ERROR,
 } from "../redux/actionCreators/actionUserType";
-import { IPost } from "./postTypes";
+import { IPost, IPostPayload } from "./postTypes";
 
 export interface IUser {
   id: number,
@@ -101,4 +104,21 @@ interface IFetchUserUpdateErrorAction {
 
 export type UpdateAction = IFetchUserUpdateAction | IFetchUserUpdateSuccessAction | IFetchUserUpdateErrorAction;
 
-export type UserAction = AuthAction | UpdateAction;
+interface IFetchAddPostAction {
+	type: typeof FETCH_ADD_POST,
+	payload: IPostPayload,
+}
+
+interface IFetchAddPostSuccessAction {
+	type: typeof FETCH_ADD_POST_SUCCESS,
+	payload: IPost[],
+}
+
+interface IFetchAddPostErrorAction {
+	type: typeof FETCH_ADD_POST_ERROR,
+	payload: null | string,
+}
+
+export type AddPostAction = IFetchAddPostAction | IFetchAddPostSuccessAction | IFetchAddPostErrorAction;
+
+export type UserAction = AuthAction | UpdateAction | AddPostAction;

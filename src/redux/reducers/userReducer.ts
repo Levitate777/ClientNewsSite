@@ -6,6 +6,9 @@ import {
   FETCH_USER_UPDATE,
 	FETCH_USER_UPDATE_SUCCESS,
 	FETCH_USER_UPDATE_ERROR,
+  FETCH_ADD_POST,
+  FETCH_ADD_POST_SUCCESS,
+  FETCH_ADD_POST_ERROR,
 } from "../actionCreators/actionUserType";
 import { UserAction, IUserState } from "../../types/userTypes";
 
@@ -71,6 +74,25 @@ export const userReducer = (state = initialState, action: UserAction): IUserStat
         ...state,
         isLoading: false, 
         errorUpdate: action.payload, 
+      }
+    case FETCH_ADD_POST: 
+      return {
+        ...state,
+        isLoading: true, 
+        errorAddPost: null,
+      }
+    case FETCH_ADD_POST_SUCCESS: 
+      return {
+        ...state,
+        isLoading: false, 
+        errorAddPost: null, 
+        posts: action.payload,
+      }
+    case FETCH_ADD_POST_ERROR: 
+      return {
+        ...state,
+        isLoading: false, 
+        errorAddPost: action.payload, 
       }
     default:
       return state

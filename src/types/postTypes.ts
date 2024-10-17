@@ -1,6 +1,10 @@
 import { ITag } from './tagTypes';
 import { IUser } from './userTypes';
-import { FETCH_POSTS, FETCH_POSTS_SUCCESS, FETCH_POSTS_ERROR } from '../redux/actionCreators/actionsPostType'
+import {
+  FETCH_POSTS,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_ERROR,
+} from '../redux/actionCreators/actionsPostType'
 
 export interface IPost {
   id: number,
@@ -16,6 +20,14 @@ export interface IPostState {
   posts: IPost[],
   isLoading: boolean,
   error: null | string,
+}
+
+export interface IPostPayload {
+  id: string,
+  header: string,
+  description: string,
+  image: File | null,
+  tags: string,
 }
 
 interface IFetchPostsAction {

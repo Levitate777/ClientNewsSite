@@ -8,7 +8,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import TextArea from 'antd/es/input/TextArea';
 
 import { AppDispatch } from '../../../redux/store';
-import { fetchUserUpdate } from '../../../redux/actionCreators/user';
+import { fetchAddPost, fetchUserUpdate } from '../../../redux/actionCreators/user';
 import { useTypeSelector } from '../../../redux/hooks/useTypeSelector';
 import { UpdateUserModal, AddPostModal } from './UserModalContent';
 
@@ -26,7 +26,7 @@ type UpdateFieldType = {
 };
 
 type AddPostFieldType = {
-  title: string;
+  header: string;
   description: string,
   tags: string,
   image: File;
@@ -60,7 +60,6 @@ const UserPageModal = ({
   const handleOk = async () => {
     try {
       const values = await form.validateFields();   
-      console.log(values);
       const isAllFieldsUndefined = Object.values(values).every(value => value === undefined);
       if (isAllFieldsUndefined) {
         handleCancel();
@@ -68,11 +67,22 @@ const UserPageModal = ({
       }
       const selectedFile: File | null = file?.length && file[0].originFileObj ? (file[0].originFileObj as File) : null;
       changeConfirmLoading(true);
-      dispatch(fetchUserUpdate({
-        id: String(id),
-        login: values.login ? values.login : null,
-        avatar: selectedFile,
-      }));
+      if (typeModal === 'update') {
+        dispatch(fetchUserUpdate({
+          id: String(id),
+          login: values.login ? values.login : null,
+          avatar: selectedFile,
+        }));
+      } else {
+        dispatch(fetchAddPost({
+          id: String(id),
+          header: values.header,
+          description: values.description,
+          tags: values.tags,
+          image: selectedFile,
+        }));
+      }
+
       form.resetFields();
       setFile([]);
     } catch (error) {

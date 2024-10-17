@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { 
   Flex, 
   Card, 
@@ -34,6 +35,8 @@ const PostCard = ({
   description, 
   openModal,
 }: IPostCardProps) => {
+  const [imgSrc, setImgSrc] = useState<string>(`${import.meta.env.VITE_APP_SERVER_URL}${image}`);
+
   const formatCreatedDate = formatDate(createdDate);
 
   return (
@@ -57,7 +60,8 @@ const PostCard = ({
       </Flex>
       <Image
         className={styles.card__image}
-        src={image ? `${import.meta.env.VITE_APP_SERVER_URL}${image}` : defaultImage}
+        src={imgSrc}
+        onError={() => setImgSrc(defaultImage)}
         preview={false}
       />
       <div className={styles.card__text}>

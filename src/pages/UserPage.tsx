@@ -20,8 +20,11 @@ const UserPage = () => {
 	const currentUser: IUser | null = useTypeSelector((state) => state.user.currentUser);
 	const error: string | null = useTypeSelector(state => state.post.error);
 	const errorUpdate: string | null = useTypeSelector(state => state.user.errorUpdate);
+	const errorAddPost: string | null = useTypeSelector(state => state.user.errorAddPost);
 	const posts: IPost[] = useTypeSelector((state) => state.user.posts);
 	const isLoading: boolean = useTypeSelector((state) => state.user.isLoading);
+
+	const allError = error ?? errorUpdate ?? errorAddPost ?? 'Что-то пошло не так';
 
 	const [filterPosts, filter, setFilter] = useFilter(posts);
 	const [postsOnPage, setCurrentPage] = usePagination(filterPosts, countPostsOnPage);
@@ -45,7 +48,7 @@ const UserPage = () => {
 					countPosts={posts.length}
 				/>
 			) : (
-				<ErrorModal error={error ?? errorUpdate ?? 'Что-то пошло не так'}/>
+				<ErrorModal error={allError}/>
 			)}
 			<div>
 				<FilterInputs

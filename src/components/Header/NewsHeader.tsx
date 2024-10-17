@@ -38,7 +38,9 @@ const NewsHeader = () => {
 
   return (
     <Header className={styles.header}>
-      <div className={styles.logo}>NewsSite</div>
+      <Link to={`${import.meta.env.VITE_APP_MAINPAGE_ROUTE}`}>
+        <div className={styles.logo}>NewsSite</div>
+      </Link>
       {currentUser === null ? (
         <div className={styles.auth}>
           <Button ghost onClick={() => handleToggleModal('login')}>Login</Button>

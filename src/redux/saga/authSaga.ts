@@ -11,7 +11,6 @@ import { whoIsThisRequest } from '../api/userApi';
 function* authSaga( action: { payload: IAuthActionPayload } ) {
   try {
     const response: AxiosResponse<IResponseAuth> = yield call(requestAuth, action.payload.user, action.payload.route);
-    console.log('response.data: ', response.data);
     yield put(fetchAuthSuccess({ user: response.data.user, posts: response.data.posts }));
     localStorage.setItem('token', response.data.accessToken)
   } catch (error) {   
@@ -26,7 +25,6 @@ function* authSaga( action: { payload: IAuthActionPayload } ) {
 function* whoIsThis() {
   try {
     const response: AxiosResponse<IUserStateData> = yield call(whoIsThisRequest);
-    console.log(response.data);
     yield put(fetchAuthSuccess(response.data));
   } catch (error) {
     if (localStorage.length) {

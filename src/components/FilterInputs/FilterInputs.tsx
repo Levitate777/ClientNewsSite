@@ -37,12 +37,10 @@ const FilterInputs = ({
 	];
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		console.log(filter);
     setFilter({ ...filter, query: e.target.value });
   };
 
   const handleSelectChange = (value: SortState) => {
-		console.log(filter);
     setFilter({ ...filter, sort: value });
   };
 

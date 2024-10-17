@@ -5,7 +5,7 @@ interface UpdateField {
 }
 
 interface AddPostField {
-  name: 'title' | 'description' | 'tags' | 'image';
+  name: 'header' | 'description' | 'tags' | 'image';
   label: string;
 	placeholder?: string;
   type: 'text' | 'textarea' | 'file';
@@ -27,7 +27,7 @@ export const UpdateUserModal: UpdateField[] = [
 
 export const AddPostModal: AddPostField[] = [
 	{
-		name: 'title' , 
+		name: 'header' , 
 		label: 'Title', 
 		rules: [{ required: true, message: 'Please input your Title!' }], 
 		type: 'text', 
